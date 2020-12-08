@@ -22,5 +22,13 @@ namespace GerenciadorCondominiosDAL.Interfaces
         Task<Usuario> PegarUsuarioPeloEmail(string email);
 
         Task AtualizarUsuario(Usuario usuario);
+
+        Task<bool> VerificarSeUsuarioEstaEmFuncao(Usuario usuario, string funcao);
+
+        Task<IEnumerable<string>> PegarFuncoesUsuario(Usuario usuario);
+
+        Task<IdentityResult> RemoverFuncoesUsuario(Usuario usuario, IEnumerable<string> funcoes);
+
+        Task<IdentityResult> IncluirUsuarioEmFuncoes(Usuario usuario, IEnumerable<string> funcoes);
     }
 }
