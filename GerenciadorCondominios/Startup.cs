@@ -1,3 +1,4 @@
+using GerenciadorCondominios.Extensions;
 using GerenciadorCondominiosBLL.Models;
 using GerenciadorCondominiosDAL;
 using GerenciadorCondominiosDAL.Interfaces;
@@ -29,7 +30,10 @@ namespace GerenciadorCondominios
             services.AddAuthentication();
             services.AddAuthorization();
 
-            services.AddTransient<IUsuarioRepositorio, UsuarioRepositorio>();
+            services.ConfigurarRepositorios();
+            services.ConfigurarCookies();
+            services.ConfigurarNomeUsuario();
+            services.ConfigurarSenhaUsuario();
 
             services.AddControllersWithViews();
         }
