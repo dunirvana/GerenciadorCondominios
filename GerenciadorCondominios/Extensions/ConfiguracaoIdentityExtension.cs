@@ -27,7 +27,7 @@ namespace GerenciadorCondominios.Extensions
                 opcoes.Password.RequiredLength = 8;
                 opcoes.Password.RequireNonAlphanumeric = true;
                 opcoes.Password.RequireUppercase = true;
-                opcoes.Password.RequiredUniqueChars 0;
+                opcoes.Password.RequiredUniqueChars = 0;
             });
 
         }

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using GerenciadorCondominiosDAL.Interfaces;
+using GerenciadorCondominiosDAL.Repositorios;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
