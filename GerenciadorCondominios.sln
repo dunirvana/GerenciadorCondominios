@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciadorCondominios", "GerenciadorCondominios\GerenciadorCondominios.csproj", "{3E138859-06C7-4D57-8A0F-4EFD832DAA02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorCondominios", "GerenciadorCondominios\GerenciadorCondominios.csproj", "{3E138859-06C7-4D57-8A0F-4EFD832DAA02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciadorCondominiosBLL", "GerenciadorCondominiosBLL\GerenciadorCondominiosBLL.csproj", "{115C5B61-A197-4D9B-B890-A2F0BA0816C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorCondominiosBLL", "GerenciadorCondominiosBLL\GerenciadorCondominiosBLL.csproj", "{115C5B61-A197-4D9B-B890-A2F0BA0816C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciadorCondominiosDAL", "GerenciadorCondominiosDAL\GerenciadorCondominiosDAL.csproj", "{FAD46276-B738-49F8-BFE9-6E456C607F68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GerenciadorCondominiosDAL", "GerenciadorCondominiosDAL\GerenciadorCondominiosDAL.csproj", "{FAD46276-B738-49F8-BFE9-6E456C607F68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

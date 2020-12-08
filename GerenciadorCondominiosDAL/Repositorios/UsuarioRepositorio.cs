@@ -63,6 +63,18 @@ namespace GerenciadorCondominiosDAL.Repositorios
 
         }
 
+        public async Task DeslogarUsuario()
+        {
+            try
+            {
+                await GerenciadorLogin.SignOutAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public int VerificarSeExisteRegistro()
         {
             try
@@ -76,5 +88,20 @@ namespace GerenciadorCondominiosDAL.Repositorios
             }
 
         }
+
+        public async Task<Usuario> PegarUsuarioPeloEmail(string email)
+        {
+            try
+            {
+                return await GerenciadorUsuarios.FindByEmailAsync(email);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
     }
 }
