@@ -103,5 +103,21 @@ namespace GerenciadorCondominiosDAL.Repositorios
 
         }
 
+        public async Task AtualizarUsuario(Usuario usuario)
+        {
+            try
+            {
+                await GerenciadorUsuarios.UpdateAsync(usuario);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
+
+
     }
 }

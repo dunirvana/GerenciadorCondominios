@@ -205,5 +205,32 @@ namespace GerenciadorCondominios.Controllers
         {
             return View(nome);
         }
+
+        public IActionResult Reprovado(string nome)
+        {
+            return View(nome);
+        }
+
+        public async Task<JsonResult> AprovarUsuario(string usuarioId)
+        {
+            var usuario = await UsuarioRepositorio.PegarPeloId(usuarioId);
+            usuario.Status = StatusConta.Aprovado;
+
+            await UsuarioRepositorio.IncluirUsuarioEmFuncao(usuario, "Morador");
+
+            await UsuarioRepositorio.AtualizarUsuario(usuario);
+
+            return Json(true);
+        }
+
+        public async Task<JsonResult> ReprovarUsuario(string usuarioId)
+        {
+            var usuario = await UsuarioRepositorio.PegarPeloId(usuarioId);
+            usuario.Status = StatusConta.Reprovado;
+
+            await UsuarioRepositorio.AtualizarUsuario(usuario);
+
+            return Json(true);
+        }
     }
 }
