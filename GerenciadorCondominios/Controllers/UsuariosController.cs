@@ -353,6 +353,8 @@ namespace GerenciadorCondominios.Controllers
 
                 await UsuarioRepositorio.AtualizarUsuario(usuario);
 
+                TempData["Atualizacao"] = "Registro atualizado";
+
                 if (await UsuarioRepositorio.VerificarSeUsuarioEstaEmFuncao(usuario, "Administrador") ||
                     await UsuarioRepositorio.VerificarSeUsuarioEstaEmFuncao(usuario, "Sindico")
                     )
