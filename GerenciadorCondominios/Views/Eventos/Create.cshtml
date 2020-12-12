@@ -1,0 +1,47 @@
+﻿@model GerenciadorCondominiosBLL.Models.Evento
+
+@{
+    ViewData["Title"] = "Novo evento";
+}
+
+<div class="formulario">
+    <div class="collection with-header">
+        <form asp-action="Create">
+
+            <input type="hidden" asp-for="UsuarioId" />
+
+            <div class="collection-header green darken-3">
+                <h6 class="white-text">Novo evento</h6>
+            </div>
+
+            <div class="collection-item">
+                <div asp-validation-summary="ModelOnly" class="red-text text-darken-4"></div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label asp-for="Nome"></label>
+                        <input asp-for="Nome" class="validate" id="nome" />
+                        <span asp-validation-for="Nome" class="red-text text-darken-4"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label asp-for="Data"></label>
+                        <input asp-for="Data" class="validate" id="data" type="text"/>
+                        <span asp-validation-for="Data" class="red-text text-darken-4"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="collection-item">
+                <button type="submit" class="btn-small green darken-3">Salvar</button> &emsp;
+                <a asp-action="Index" asp-controller="Eventos">Voltar</a>
+            </div>            
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/InicializarDatepicker.js"></script>
+}
