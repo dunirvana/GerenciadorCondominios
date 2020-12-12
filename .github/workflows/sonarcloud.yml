@@ -1,20 +1,22 @@
+name: Sonarcloud
+
 on:
-  # Trigger analysis when pushing in master or pull requests, and when creating
-  # a pull request. 
   push:
-    branches:
-      - master
+    branches: [ main ]
   pull_request:
-      types: [opened, synchronize, reopened]
-name: Main Workflow
+    branches: [ main ]
+
 jobs:
   sonarcloud:
+
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
       with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting
-        fetch-depth: 0
+        dotnet-version: 3.1.301
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
