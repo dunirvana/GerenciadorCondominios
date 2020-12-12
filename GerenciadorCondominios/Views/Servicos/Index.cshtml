@@ -1,53 +1,103 @@
 ﻿@model IEnumerable<GerenciadorCondominiosBLL.Models.Servico>
+@using GerenciadorCondominiosBLL.Models
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Serviços cadastrados";
+    string controller = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
-<h1>Index</h1>
+<div class="tabelas">
+    <partial name="_Confirmacoes" />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Usuario)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuario.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SevicoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SevicoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SevicoId">Delete</a>
-            </td>
-        </tr>
+    <div class="collection with-header">
+
+        <div class="collection-header grey darken-1">
+            <div class="row">
+                <div class="col s10">
+                    <h6 class="white-text">Serviços cadastrados</h6>
+                </div>
+                <div class="col s2">
+                    <a asp-controller="Servicos" asp-action="Create" class="waves-effect waves-light btn-small btn-floating grey darken-4 tooltip" data-position="right" data-tooltip="Novo serviço">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="collection-item">
+
+            <table class="striped highlight responsive">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Valor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            R$ @Html.DisplayFor(modelItem => item.Valor)
+                        </td>
+
+                        <td>
+                            @if (item.Status == StatusServico.Pendente)
+                            {
+                                <span class="new badge purple darken-1" data-badge-caption="">@Html.DisplayFor(modelItem => item.Status)</span>
+                            }
+                            else if (item.Status == StatusServico.Aceito)
+                            {
+                                <span class="new badge green accent-4" data-badge-caption="">@Html.DisplayFor(modelItem => item.Status)</span>
+                            }
+                            else
+                            {
+                                <span class="new badge deep-orange accent-4" data-badge-caption="">@Html.DisplayFor(modelItem => item.Status)</span>
+                            }
+                        </td>
+
+                        <td>
+                            @if (User.IsInRole("Morador"))
+                            {
+                                @if (item.Status == StatusServico.Pendente)
+                                {
+                                    <a asp-controller="Servicos" asp-action="Edit" asp-route-id="@item.SevicoId" class="btn-floating btn-small blue darken-4 tooltip" data-position="right" data-tooltip="Atualizar serviço">
+                                        <i class="material-icons">mode_edit</i>
+                                    </a>
+                                    <a onclick="ConfirmarExclusao(@item.SevicoId, '@item.Nome', '@controller')" class="btn-floating btn-small red darken-4 tooltip modal-trigger" data-target="modal" data-position="right" data-tooltip="Excluir serviço">
+                                        <i class="material-icons">delete_forever</i>
+                                    </a>
+                                }
+                            }
+                            else
+                            {
+                                <a asp-action="AprovarServico" app-route-id="@item.SevicoId" class="btn-floating btn-small blue darken-4 toolip" data-position="left" data-tooltip="Aprovar serviço"><i class="material-icons">thumb_up</i></a>
+                                <a asp-action="ReprovarServico" app-route-id="@item.SevicoId" class="btn-floating btn-small red darken-4 toolip" data-position="left" data-tooltip="Reprovar serviço"><i class="material-icons">thumb_down</i></a>
+                            }
+                        </td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<partial name="_ModalExcluir" />
+
+@section Scripts {
+    <script src="~/js/ConfirmarExclusao.js"></script>
 }
-    </tbody>
-</table>

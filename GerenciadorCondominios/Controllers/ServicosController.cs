@@ -52,6 +52,7 @@ namespace GerenciadorCondominios.Controllers
         {
             if (ModelState.IsValid)
             {
+                servico.Status = StatusServico.Pendente;
                 await ServicoRepositorio.Inserir(servico);
                 TempData["NovoRegistro"] = $"Serviço {servico.Nome} inserido com sucesso";
 
@@ -86,6 +87,7 @@ namespace GerenciadorCondominios.Controllers
             {
                 await ServicoRepositorio.Atualizar(servico);
                 TempData["Atualizacao"] = $"Serviço {servico.Nome} atualizado com sucesso";
+                return RedirectToAction(nameof(Index));
             }
 
             return View(servico);

@@ -85,6 +85,7 @@ namespace GerenciadorCondominios.Controllers
             {
                 await EventoRepositorio.Atualizar(evento);
                 TempData["Atualizacao"] = $"Evento {evento.Nome} atualizado com sucesso";
+                return RedirectToAction(nameof(Index));
             }
 
             return View(evento);
