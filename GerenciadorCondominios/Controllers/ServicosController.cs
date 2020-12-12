@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GerenciadorCondominiosBLL.Models;
 using GerenciadorCondominiosDAL;
 using GerenciadorCondominiosDAL.Interfaces;
+using GerenciadorCondominios.ViewModels;
 
 namespace GerenciadorCondominios.Controllers
 {
@@ -15,11 +16,15 @@ namespace GerenciadorCondominios.Controllers
     {
         private readonly IServicoRepositorio ServicoRepositorio;
         private readonly IUsuarioRepositorio UsuarioRepositorio;
+        private readonly IServicoPredioRepositorio ServicoPredioRepositorio;
+        private readonly IHistoricoRecursoRepositorio HistoricoRecursoRepositorio;
 
-        public ServicosController(IServicoRepositorio servicoRepositorio, IUsuarioRepositorio usuarioRepositorio)
+        public ServicosController(IServicoRepositorio servicoRepositorio, IUsuarioRepositorio usuarioRepositorio, IServicoPredioRepositorio servicoPredioRepositorio, IHistoricoRecursoRepositorio historicoRecursoRepositorio)
         {
             ServicoRepositorio = servicoRepositorio;
             UsuarioRepositorio = usuarioRepositorio;
+            ServicoPredioRepositorio = servicoPredioRepositorio;
+            HistoricoRecursoRepositorio = historicoRecursoRepositorio;
         }
 
         public async Task<IActionResult> Index()
@@ -102,5 +107,65 @@ namespace GerenciadorCondominios.Controllers
             return Json("Serviço excluido");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AprovarServico(int id)
+        {
+            var servico = await ServicoRepositorio.PegarPeloId(id);
+            var viewModel = new ServicoAprovadoViewModel
+            {
+                ServicoId = servico.SevicoId,
+                Nome = servico.Nome
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AprovarServico(ServicoAprovadoViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var servico = await ServicoRepositorio.PegarPeloId(viewModel.ServicoId);
+                servico.Status = StatusServico.Aceito;
+                await ServicoRepositorio.Atualizar(servico);
+
+                var servicoPredio = new ServicoPredio
+                {
+                    ServicoId = viewModel.ServicoId,
+                    DataExecucao = viewModel.Data
+                };
+
+                await ServicoPredioRepositorio.Inserir(servicoPredio);
+                var hr = new HistoricoRecurso
+                {
+                    Valor = servico.Valor,
+                    MesId = servicoPredio.DataExecucao.Month,
+                    Dia = servicoPredio.DataExecucao.Day,
+                    Ano = servicoPredio.DataExecucao.Year,
+                    Tipo = Tipo.Saida
+                };
+
+                await HistoricoRecursoRepositorio.Inserir(hr);
+                TempData["NovoRegistro"] = $"{servico.Nome} escalado com sucesso";
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> RecusarServico(int id)
+        {
+            var servico = await ServicoRepositorio.PegarPeloId(id);
+            if (servico == null)
+                return NotFound();
+
+            servico.Status = StatusServico.Recusado;
+            await ServicoRepositorio.Atualizar(servico);
+            TempData["Exclusao"] = $"{servico.Nome} recusado";
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -16,6 +16,8 @@ namespace GerenciadorCondominiosDAL
             services.AddTransient<IVeiculoRepositorio, VeiculoRepositorio>();
             services.AddTransient<IEventoRepositorio, EventoRepositorio>();
             services.AddTransient<IServicoRepositorio, ServicoRepositorio>();
+            services.AddTransient<IServicoPredioRepositorio, ServicoPredioRepositorio>();
+            services.AddTransient<IHistoricoRecursoRepositorio, HistoricoRecursoRepositorio>();
         }
     }
 }
