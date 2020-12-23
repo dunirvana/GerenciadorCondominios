@@ -1,4 +1,4 @@
-using GerenciadorCondominios.Extensions;
+﻿using GerenciadorCondominios.Extensions;
 using GerenciadorCondominiosBLL.Models;
 using GerenciadorCondominiosDAL;
 using GerenciadorCondominiosDAL.Interfaces;
@@ -36,6 +36,9 @@ namespace GerenciadorCondominios
             services.ConfigurarSenhaUsuario();
 
             services.AddControllersWithViews();
+
+            services.AddDbContext<Context>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Context")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

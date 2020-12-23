@@ -1,0 +1,45 @@
+﻿@model GerenciadorCondominiosBLL.Models.Funcao
+
+@{
+    ViewData["Title"] = "Nova função";
+}
+
+<div class="formulario">
+    <div class="collection with-header">
+        <form asp-action="Create">
+
+            <div class="collection-header green darken-3">
+                <h6 class="white-text">Nova função</h6>
+            </div>
+
+            <div class="collection-item">
+                <div asp-validation-summary="ModelOnly" class="red-text text-darken-4"></div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="validate" id="name" />
+                        <span asp-validation-for="Name" class="red-text text-darken-4"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label asp-for="Descricao"></label>
+                        <input asp-for="Descricao" class="validate" id="descricao" />
+                        <span asp-validation-for="Descricao" class="red-text text-darken-4"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="collection-item">
+                <button type="submit" class="btn-small green darken-3">Salvar</button> &emsp;
+                <a asp-action="Index" asp-controller="Funcoes">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/InicializarDatepicker.js"></script>
+}
