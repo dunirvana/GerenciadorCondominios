@@ -16,7 +16,7 @@ namespace GerenciadorCondominiosDAL.Mapeamentos
             builder.Property(a => a.MoradorId).IsRequired(false);
 
             builder.HasOne(a => a.Proprietario).WithMany(a => a.ProprietariosApartamento).HasForeignKey(a => a.ProprietarioId).OnDelete(DeleteBehavior.NoAction);
-            builder.HasOne(a => a.Morador).WithMany(a => a.MoradoresApartamento).HasForeignKey(a => a.MoradorId).HasForeignKey(a => a.ProprietarioId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(a => a.Morador).WithMany(a => a.MoradoresApartamento).HasForeignKey(a => a.MoradorId).OnDelete(DeleteBehavior.NoAction);
 
             builder.ToTable("Apartamentos");
         }

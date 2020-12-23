@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /GerenciadorCondominios/wwwroot/Imagens
+/GerenciadorCondominios/package-lock.json
