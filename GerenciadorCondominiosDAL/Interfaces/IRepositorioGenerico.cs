@@ -15,6 +15,8 @@ namespace GerenciadorCondominiosDAL.Interfaces
 
         Task Inserir(TEntity entity);
 
+        Task Inserir(List<TEntity> entity);
+
         Task Atualizar(TEntity entity);
 
         Task Excluir(TEntity entity);
