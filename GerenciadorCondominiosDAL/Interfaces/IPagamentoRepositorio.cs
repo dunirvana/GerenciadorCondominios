@@ -9,5 +9,6 @@ namespace GerenciadorCondominiosDAL.Interfaces
 {
     public interface IPagamentoRepositorio : IRepositorioGenerico<Pagamento>
     {
+        Task<IEnumerable<Pagamento>> PegarPagamentosPorUsuario(string usuarioId);
     }
 }

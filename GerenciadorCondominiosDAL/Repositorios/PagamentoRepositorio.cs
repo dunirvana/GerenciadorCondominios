@@ -19,5 +19,20 @@ namespace GerenciadorCondominiosDAL.Repositorios
             Contexto = contexto;
         }
 
+        public async Task<IEnumerable<Pagamento>> PegarPagamentosPorUsuario(string usuarioId)
+        {
+            try
+            {
+                return await Contexto.Pagamentos
+                    .Include(p => p.Aluguel)
+                    .ThenInclude(p => p.Mes)
+                    .Where(p => p.UsuarioId == usuarioId).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
