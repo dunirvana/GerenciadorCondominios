@@ -1,7 +1,16 @@
-﻿.corpo{
+﻿﻿.corpo {
     background-color: #1565c0;
     width: 100%;
     height: 100%;
+}
+
+.body-content {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.sidenav {
+    width: 360px;
 }
 
 .registroform {
@@ -32,4 +41,37 @@
     padding-top: 35px;
     padding-left: 35px;
     padding-right: 35px;
+}
+
+.campos {
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.tabelas, .formulario {
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+.card-espacado {
+    padding-top: 25px;
+    padding-left: 50px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+}
+
+.collectionpie {
+    padding-left: 10px;
+}
+
+.up {
+    background-color: #1b5e20;
+    color: white;
+    border-radius: 100%;
+}
+
+.down {
+    background-color: #b71c1c;
+    color: white;
+    border-radius: 100%;
 }

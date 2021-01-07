@@ -38,9 +38,9 @@
 
                     @RenderBody()
                     <hr />
-                    <footer class="border-top footer text-muted">
+                    <footer>
                         <div class="container">
-                            &copy; 2020 - GerenciadorCondominios - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            &copy; 2020 - GerenciadorCondominios
                         </div>
                     </footer>
 
@@ -60,6 +60,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
         <script src="~/js/InicializarTooltips.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script>
+            $(document).ready(
+                function () {
+                    $('.sidenav').sidenav({});
+                }
+            );
+        </script>
         @RenderSection("Scripts", required: false)
     </environment>
 
