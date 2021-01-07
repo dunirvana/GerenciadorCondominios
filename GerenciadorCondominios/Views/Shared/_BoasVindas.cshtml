@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNetCore.Identity    
+@using GerenciadorCondominiosBLL.Models
+@using GerenciadorCondominiosDAL.Interfaces
+
+@inject SignInManager<Usuario> GerenciadorLogin
+@inject UserManager<Usuario> GerenciadorUsuarios
+@inject IUsuarioRepositorio UsuarioRepositorio
+
+@{ 
+    var usuario = await UsuarioRepositorio.PegarUsuarioPeloNome(User);
+    IEnumerable<string> funcoes = await UsuarioRepositorio.PegarFuncoesUsuario(usuario);
+}
+
+
+@if (GerenciadorLogin.IsSignedIn(User))
+{
+    <ul>
+
+        <li class="nav-item"><a class="nav-link" asp-controller="Usuarios" asp-action="Index"><span class="white-text">Olá, @usuario.UserName</span></a> </li>
+        <li>
+            <a class="nav-link white-text">@usuario.Email</a>
+        </li>
+        <li>
+            @foreach (var funcao in funcoes)
+            {
+                <a class="nav-link white-text">@funcao</a>
+            }
+        </li>
+        <li>
+            <a class="nav-link white-text">Bem vindo!</a>
+        </li>
+
+    </ul>
+}

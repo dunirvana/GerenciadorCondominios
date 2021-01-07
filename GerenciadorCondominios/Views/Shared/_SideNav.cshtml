@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity    
+@using GerenciadorCondominiosBLL.Models
+@using GerenciadorCondominiosDAL.Interfaces
+
+@inject SignInManager<Usuario> GerenciadorLogin
+@inject UserManager<Usuario> GerenciadorUsuarios
+@inject IUsuarioRepositorio UsuarioRepositorio
+
+@{ 
+    var usuario = await UsuarioRepositorio.PegarUsuarioPeloNome(User);
+}
+
+    <ul id="slide-up" class="sidenav sidenav-fixed">
+
+        <li class="center-align">
+
+            <div class="user-view">
+
+                <div class="background purple darken-4">
+
+                </div>
+                <text> <partial name="_BoasVindas" /> </text>
+
+            </div>
+
+        </li>
+
+        @if (await UsuarioRepositorio.VerificarSeUsuarioEstaEmFuncao(usuario, "Administrador") || await UsuarioRepositorio.VerificarSeUsuarioEstaEmFuncao(usuario, "Sindico"))
+        {
+            <li class="nav-item"><a class="nav-link" asp-controller="Dashboard" asp-action="Index"><i class="material-icons">insert_chart</i>Dashboard</a> </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Usuarios" asp-action="Index"><i class="material-icons">account_box</i>Usuários</a> </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Apartamentos" asp-action="Index"><i class="material-icons">store</i>Apartamentos</a> </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Alugueis" asp-action="Index"><i class="material-icons">attach_money</i> Alugueis</a></li>
+        }
+        else if (await UsuarioRepositorio.VerificarSeUsuarioEstaEmFuncao(usuario, "Administrador"))
+        {
+            <li class="nav-item"><a class="nav-link" asp-controller="Funcoes" asp-action="Index"><i class="material-icons">group</i>Funções</a></li>
+        }
+
+        <li class="nav-item"><a class="nav-link" asp-controller="Pagamentos" asp-action="Index">Pagamentos</a></li>
+        <li class="nav-item"><a class="nav-link" asp-controller="Eventos" asp-action="Index">Eventos</a></li>
+        <li class="nav-item"><a class="nav-link" asp-controller="Servicos" asp-action="Index">Serviços</a></li>
+
+    </ul>

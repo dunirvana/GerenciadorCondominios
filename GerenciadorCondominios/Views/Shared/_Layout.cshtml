@@ -22,39 +22,37 @@
 
 </head>
 <body>
-    <header>
-        <nav class="grey darken-3">
-            <div class="nav-wrapper navbar-fixed">
 
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li class="nav-item"><a class="nav-link" asp-controller="Pagamentos" asp-action="Index">Pagamentos</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-controller="Alugueis" asp-action="Index">Alugueis</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-controller="Funcoes" asp-action="Index">Funções</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-controller="Apartamentos" asp-action="Index">Apartamentos</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-controller="Eventos" asp-action="Index">Eventos</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-controller="Servicos" asp-action="Index">Serviços</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-controller="Usuarios" asp-action="MinhasInformacoes">Minhas informações</a></li>
-                    <li class="nav-item"><partial name="_Logout" /></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <div class="row">
 
-    <div class="conteudo-principal">
-
-        <div class="body-content">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
+        <div class="col s3">
+            <partial name="_SideNav" />
         </div>
 
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2020 - GerenciadorCondominios - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="col s9">
+            <partial name="_Nav" />
+
+            <div class="conteudo-principal">
+
+                <div class="body-content">
+
+                    @RenderBody()
+                    <hr />
+                    <footer class="border-top footer text-muted">
+                        <div class="container">
+                            &copy; 2020 - GerenciadorCondominios - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </div>
+                    </footer>
+
+                </div>
+
+
             </div>
-        </footer>
+
+        </div>
 
     </div>
+
 
     <environment include="Development">
 
