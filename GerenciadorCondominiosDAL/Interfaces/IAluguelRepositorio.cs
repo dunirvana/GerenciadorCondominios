@@ -11,5 +11,8 @@ namespace GerenciadorCondominiosDAL.Interfaces
     {
         bool AluguelJaExiste(int mesId, int ano);
         new Task<IEnumerable<Aluguel>> PegarTodos();
+
+        Task<IEnumerable<int>> PegarTodosAnos();
     }
 }
+

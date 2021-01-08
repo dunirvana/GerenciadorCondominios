@@ -46,5 +46,18 @@ namespace GerenciadorCondominiosDAL.Repositorios
                 throw ex;
             }
         }
+
+        public async Task<IEnumerable<int>> PegarTodosAnos()
+        {
+            try
+            {
+                return await Contexto.Alugueis.Select(a => a.Ano).Distinct().ToListAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
