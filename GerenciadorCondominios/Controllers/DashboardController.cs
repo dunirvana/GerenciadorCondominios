@@ -24,6 +24,17 @@ namespace GerenciadorCondominios.Controllers
             ViewData["Anos"] = new SelectList(await AluguelRepositorio.PegarTodosAnos());
             return View();
         }
+
+        public JsonResult DadosGraficoGanhos(int ano)
+        {
+            return Json(HistoricoRecursoRepositorio.PegarHistoricoGanhos(ano));
+        }
+
+        public JsonResult DadosGraficoDespesas(int ano)
+        {
+            return Json(HistoricoRecursoRepositorio.PegarHistoricoDespesas(ano));
+        }
+
     }
 }
  
