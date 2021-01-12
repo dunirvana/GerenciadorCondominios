@@ -51,8 +51,9 @@
             <div class="collection-item">
 
 
-@*@await Component.InvokeAsync("UltimasMovimentacoes")*@
-</div>
+
+@await Component.InvokeAsync("UltimasMovimentacoes")
+            </div>
 </div>
 </div>
 </div>
@@ -65,7 +66,8 @@
     <script src="~/js/Graficos.js"></script>
     <script src="~/js/MetodosComuns.js"></script>
 
-        <script>CarregarDadosGanhosPorAno();
+        <script>
+            CarregarDadosGanhosPorAno();
             MontarGraficoDespesasGanhosTotais();
 
 
