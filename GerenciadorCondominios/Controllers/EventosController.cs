@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using GerenciadorCondominiosBLL.Models;
 using GerenciadorCondominiosDAL;
 using GerenciadorCondominiosDAL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GerenciadorCondominios.Controllers
 {
+    [Authorize]
     public class EventosController : Controller
     {
         private readonly IEventoRepositorio EventoRepositorio;

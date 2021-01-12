@@ -1,0 +1,33 @@
+﻿@model string
+@{
+    Layout = null;
+    ViewData["Title"] = "Acesso negado";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Conta reprovada</title>
+
+    <environment include="Development">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </environment>
+
+    <environment exclude="Development">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </environment>
+
+</head>
+<body class="white-text red darken-2 container" style="position: absolute; top:40%; left: 20%">
+    <div>
+        <h1>Acesso negado</h1>
+        <h5>Olá, @Model ! Infelizmente você não tem o perfil ncessário para realizar essa ação</h5>
+    </div>
+</body>
+</html>

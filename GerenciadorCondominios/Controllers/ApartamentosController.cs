@@ -11,9 +11,11 @@ using Microsoft.AspNetCore.Hosting;
 using GerenciadorCondominiosDAL.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GerenciadorCondominios.Controllers
 {
+    [Authorize(Roles = "Administrador,Sindico")]
     public class ApartamentosController : Controller
     {
         private readonly IWebHostEnvironment WebHostEnvironment;

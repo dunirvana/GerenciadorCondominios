@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using GerenciadorCondominiosBLL.Models;
 using GerenciadorCondominiosDAL;
 using GerenciadorCondominiosDAL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GerenciadorCondominios.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class FuncoesController : Controller
     {
         private readonly IFuncaoRepositorio FuncaoRepositorio;

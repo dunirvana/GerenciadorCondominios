@@ -9,9 +9,11 @@ using GerenciadorCondominiosBLL.Models;
 using GerenciadorCondominiosDAL;
 using GerenciadorCondominiosDAL.Interfaces;
 using GerenciadorCondominiosDAL.Repositorios;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GerenciadorCondominios.Controllers
 {
+    [Authorize(Roles ="Administrador,Sindico")]
     public class AlugueisController : Controller
     {
         private readonly IAluguelRepositorio AluguelRepositorio;
@@ -26,7 +28,6 @@ namespace GerenciadorCondominios.Controllers
             PagamentoRepositorio = pagamentoRepositorio;
             MesRepositorio = mesRepositorio;
         }
-
 
         public async Task<IActionResult> Index()
         {            

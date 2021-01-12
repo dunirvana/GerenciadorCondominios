@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using GerenciadorCondominios.ViewModels;
 using GerenciadorCondominiosDAL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GerenciadorCondominios.Controllers
 {
+    [Authorize(Roles = "Administrador,Sindico")]
     public class DashboardController : Controller
     {
         public readonly IAluguelRepositorio AluguelRepositorio;

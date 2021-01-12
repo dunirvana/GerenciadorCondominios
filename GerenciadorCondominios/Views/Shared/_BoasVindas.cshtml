@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity    
+﻿@using Microsoft.AspNetCore.Identity
 @using GerenciadorCondominiosBLL.Models
 @using GerenciadorCondominiosDAL.Interfaces
 
@@ -6,8 +6,11 @@
 @inject UserManager<Usuario> GerenciadorUsuarios
 @inject IUsuarioRepositorio UsuarioRepositorio
 
-@{ 
+@{
     var usuario = await UsuarioRepositorio.PegarUsuarioPeloNome(User);
+
+
+
     IEnumerable<string> funcoes = await UsuarioRepositorio.PegarFuncoesUsuario(usuario);
 }
 
