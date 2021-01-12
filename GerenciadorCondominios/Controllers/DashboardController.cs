@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GerenciadorCondominios.ViewModels;
 using GerenciadorCondominiosDAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -35,6 +36,18 @@ namespace GerenciadorCondominios.Controllers
             return Json(HistoricoRecursoRepositorio.PegarHistoricoDespesas(ano));
         }
 
+        public async Task<JsonResult> DadosGraficoDespesasGanhosTotais()
+        {
+            int ano = DateTime.Now.Year;
+            GanhosDespesasViewModel model = new GanhosDespesasViewModel
+            {
+                Despesas = await HistoricoRecursoRepositorio.PegarSomaDespesas(ano),
+                Ganhos = await HistoricoRecursoRepositorio.PegarSomaGanhos(ano)
+            };
+
+            return Json(model);
+
+        }
     }
 }
  
